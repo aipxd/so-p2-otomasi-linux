@@ -16,6 +16,9 @@ readonly EXIT_VERIFY_FAIL=5
 # ---------- Variabel default ----------
 SRC_DIR=""
 DEST_DIR=""
+SRC_ABS=""
+DEST_ABS=""
+ARCHIVE_FILE=""
 LOG_FILE="./logs/backup.log"
 LOG_READY=0
 CONFIG_FILE=""
@@ -100,15 +103,66 @@ validate_input() {
         log ERROR "Folder tujuan tidak bisa ditulis: $DEST_DIR"
         exit "$EXIT_DEST_INVALID"
     fi
-    log INFO "Validasi input OK (sumber=$SRC_DIR, tujuan=$DEST_DIR)"
+
+    SRC_ABS="$(cd "$SRC_DIR" && pwd -P)"
+    DEST_ABS="$(cd "$DEST_DIR" && pwd -P)"
+
+    if [[ "$SRC_ABS" == "/" ]]; then
+        log ERROR "Folder sumber '/' ditolak demi keamanan"
+        exit "$EXIT_SRC_INVALID"
+    fi
+    case "$DEST_ABS/" in
+        "$SRC_ABS"/*)
+            log ERROR "Folder tujuan tidak boleh berada di dalam folder sumber"
+            exit "$EXIT_DEST_INVALID"
+            ;;
+    esac
+
+    log INFO "Validasi input OK (sumber=$SRC_ABS, tujuan=$DEST_ABS)"
 }
 
 create_backup() {
-    log TODO "create_backup belum dibuat"
+    local ts base parent tmp_file tar_err
+    ts="$(date '+%Y%m%d_%H%M%S')"
+    base="$(basename "$SRC_ABS")"
+    parent="$(dirname "$SRC_ABS")"
+    ARCHIVE_FILE="$DEST_ABS/${base}_${ts}.tar.gz"
+    tmp_file="${ARCHIVE_FILE}.part"
+
+    if [[ -e "$ARCHIVE_FILE" ]]; then
+        log ERROR "Arsip sudah ada dan tidak ditimpa: $ARCHIVE_FILE"
+        exit "$EXIT_ARCHIVE_FAIL"
+    fi
+
+    log INFO "Membuat arsip: $ARCHIVE_FILE"
+    if ! tar_err="$(tar -czf "$tmp_file" -C "$parent" "$base" 2>&1)"; then
+        log ERROR "Gagal membuat arsip dari $SRC_ABS"
+        log ERROR "Pesan tar: $tar_err"
+        rm -f "$tmp_file"
+        exit "$EXIT_ARCHIVE_FAIL"
+    fi
+
+    if ! mv "$tmp_file" "$ARCHIVE_FILE"; then
+        log ERROR "Gagal menamai ulang arsip sementara"
+        rm -f "$tmp_file"
+        exit "$EXIT_ARCHIVE_FAIL"
+    fi
+    log INFO "Arsip berhasil dibuat"
 }
 
 verify_backup() {
-    log TODO "verify_backup belum dibuat"
+    local size
+    if [[ ! -s "$ARCHIVE_FILE" ]]; then
+        log ERROR "Arsip kosong atau tidak ada: $ARCHIVE_FILE"
+        exit "$EXIT_VERIFY_FAIL"
+    fi
+    if ! tar -tzf "$ARCHIVE_FILE" > /dev/null 2>&1; then
+        log ERROR "Arsip tidak bisa dibaca (rusak), arsip dihapus: $ARCHIVE_FILE"
+        rm -f "$ARCHIVE_FILE"
+        exit "$EXIT_VERIFY_FAIL"
+    fi
+    size="$(stat -c %s "$ARCHIVE_FILE")"
+    log INFO "Verifikasi OK: $ARCHIVE_FILE (${size} byte)"
 }
 
 main() {
