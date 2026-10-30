@@ -1,9 +1,9 @@
 HASIL PENGUJIAN backup.sh
-Tanggal : 2026-10-30 03:17:22
+Tanggal : 2026-10-30 03:56:11
 Sistem  : Linux 7.0.0-30-generic, bash 5.3.9(1)-release
 
 [T01] SUKSES: backup folder yang valid
-    perintah       : ./backup.sh -s /tmp/tmp.Fjlw8TYyPU/sumber -d /tmp/tmp.Fjlw8TYyPU/hasil_ok
+    perintah       : ./backup.sh -s /tmp/tmp.BftxfZREgE/sumber -d /tmp/tmp.BftxfZREgE/hasil_ok
     exit diharapkan: 0
     exit aktual    : 0
     [PASS] exit code sesuai
@@ -17,37 +17,37 @@ Sistem  : Linux 7.0.0-30-generic, bash 5.3.9(1)-release
     [PASS] exit code sesuai
 
 [T03] GAGAL: folder sumber tidak ada
-    perintah       : ./backup.sh -s /tmp/tmp.Fjlw8TYyPU/tidak_ada -d /tmp/tmp.Fjlw8TYyPU/hasil_ok
+    perintah       : ./backup.sh -s /tmp/tmp.BftxfZREgE/tidak_ada -d /tmp/tmp.BftxfZREgE/hasil_ok
     exit diharapkan: 2
     exit aktual    : 2
     [PASS] exit code sesuai
 
 [T04] GAGAL: folder tujuan tidak ada
-    perintah       : ./backup.sh -s /tmp/tmp.Fjlw8TYyPU/sumber -d /tmp/tmp.Fjlw8TYyPU/tidak_ada
+    perintah       : ./backup.sh -s /tmp/tmp.BftxfZREgE/sumber -d /tmp/tmp.BftxfZREgE/tidak_ada
     exit diharapkan: 3
     exit aktual    : 3
     [PASS] exit code sesuai
 
 [T05] GAGAL: folder tujuan di dalam folder sumber
-    perintah       : ./backup.sh -s /tmp/tmp.Fjlw8TYyPU/sumber2 -d /tmp/tmp.Fjlw8TYyPU/sumber2/dalam
+    perintah       : ./backup.sh -s /tmp/tmp.BftxfZREgE/sumber2 -d /tmp/tmp.BftxfZREgE/sumber2/dalam
     exit diharapkan: 3
     exit aktual    : 3
     [PASS] exit code sesuai
 
 [T06] GAGAL: file konfigurasi tidak ada
-    perintah       : ./backup.sh -c /tmp/tmp.Fjlw8TYyPU/tidak_ada.conf
+    perintah       : ./backup.sh -c /tmp/tmp.BftxfZREgE/tidak_ada.conf
     exit diharapkan: 6
     exit aktual    : 6
     [PASS] exit code sesuai
 
 [T07] GAGAL: isi konfigurasi tidak valid
-    perintah       : ./backup.sh -c /tmp/tmp.Fjlw8TYyPU/salah.conf
+    perintah       : ./backup.sh -c /tmp/tmp.BftxfZREgE/salah.conf
     exit diharapkan: 6
     exit aktual    : 6
     [PASS] exit code sesuai
 
 [T08] GAGAL: ada file yang tidak bisa dibaca
-    perintah       : ./backup.sh -s /tmp/tmp.Fjlw8TYyPU/sumber_rusak -d /tmp/tmp.Fjlw8TYyPU/hasil_gagal
+    perintah       : ./backup.sh -s /tmp/tmp.BftxfZREgE/sumber_rusak -d /tmp/tmp.BftxfZREgE/hasil_gagal
     exit diharapkan: 4
     exit aktual    : 4
     [PASS] exit code sesuai

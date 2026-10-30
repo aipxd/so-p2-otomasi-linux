@@ -1,0 +1,4 @@
+Review seksi 9 - 2026-10-30 03:56:24
+shellcheck 0.11.0
+Perintah: shellcheck backup.sh tests/run_tests.sh
+exit code shellcheck: 0

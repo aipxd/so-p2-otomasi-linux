@@ -1,0 +1,24 @@
+Review keamanan seksi 9 - 2026-10-30 03:57:42
+
+[1] Daftar file yang dilacak Git:
+.gitignore
+README.md
+backup.sh
+config/backup.conf.example
+evidence/hasil_tes.txt
+evidence/log_T01.log
+evidence/log_T02.log
+evidence/log_T03.log
+evidence/log_T04.log
+evidence/log_T05.log
+evidence/log_T06.log
+evidence/log_T07.log
+evidence/log_T08.log
+tests/run_tests.sh
+
+[2] Pencarian kata sensitif di riwayat commit (git log -p):
+222:+- Tidak ada password, token, private key, atau data pribadi di repository.
+(selesai)
+
+[3] File log, arsip, atau .part yang ikut dilacak Git:
+(selesai)

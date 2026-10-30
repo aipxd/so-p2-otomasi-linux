@@ -12,6 +12,7 @@ WORK="$(mktemp -d)"
 PASS=0
 FAIL=0
 
+# shellcheck disable=SC2329  # dipanggil tidak langsung lewat trap EXIT
 cleanup() {
     chmod -R u+rwx "$WORK" 2>/dev/null
     rm -rf "$WORK"
@@ -62,7 +63,7 @@ echo "isi uji" > "$WORK/sumber/a.txt"
 
 # ---------- T01: skenario sukses ----------
 run_case T01 "SUKSES: backup folder yang valid" 0 -s "$WORK/sumber" -d "$WORK/hasil_ok"
-arsip="$(ls "$WORK/hasil_ok"/*.tar.gz 2>/dev/null | head -n 1)"
+arsip="$(find "$WORK/hasil_ok" -name "*.tar.gz" -print -quit)"
 [[ -n "$arsip" ]]
 mark "arsip .tar.gz terbentuk" $?
 [[ -n "$arsip" ]] && tar -tzf "$arsip" | grep -q "sumber/a.txt"

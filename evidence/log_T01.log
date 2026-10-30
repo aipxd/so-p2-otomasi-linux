@@ -1,7 +1,7 @@
-[2026-10-30 03:17:22] [INFO] Script dimulai
-[2026-10-30 03:17:22] [INFO] Tidak memakai file konfigurasi
-[2026-10-30 03:17:22] [INFO] Validasi input OK (sumber=/tmp/tmp.Fjlw8TYyPU/sumber, tujuan=/tmp/tmp.Fjlw8TYyPU/hasil_ok)
-[2026-10-30 03:17:22] [INFO] Membuat arsip: /tmp/tmp.Fjlw8TYyPU/hasil_ok/sumber_20261030_031722.tar.gz
-[2026-10-30 03:17:22] [INFO] Arsip berhasil dibuat
-[2026-10-30 03:17:22] [INFO] Verifikasi OK: /tmp/tmp.Fjlw8TYyPU/hasil_ok/sumber_20261030_031722.tar.gz (158 byte)
-[2026-10-30 03:17:22] [INFO] Proses selesai
+[2026-10-30 03:56:11] [INFO] Script dimulai
+[2026-10-30 03:56:11] [INFO] Tidak memakai file konfigurasi
+[2026-10-30 03:56:11] [INFO] Validasi input OK (sumber=/tmp/tmp.BftxfZREgE/sumber, tujuan=/tmp/tmp.BftxfZREgE/hasil_ok)
+[2026-10-30 03:56:11] [INFO] Membuat arsip: /tmp/tmp.BftxfZREgE/hasil_ok/sumber_20261030_035611.tar.gz
+[2026-10-30 03:56:11] [INFO] Arsip berhasil dibuat
+[2026-10-30 03:56:11] [INFO] Verifikasi OK: /tmp/tmp.BftxfZREgE/hasil_ok/sumber_20261030_035611.tar.gz (159 byte)
+[2026-10-30 03:56:11] [INFO] Proses selesai
