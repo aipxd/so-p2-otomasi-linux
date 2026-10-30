@@ -1,0 +1,6 @@
+# Contoh konfigurasi backup.sh (tanpa credential)
+# Salin ke config/backup.conf lalu sesuaikan. File backup.conf tidak ikut di-commit.
+# Pakai path absolut, karena tanda ~ tidak diperluas.
+# Parameter -s dan -d di command line selalu menang atas nilai di sini.
+SRC_DIR=/home/USERNAME/data
+DEST_DIR=/home/USERNAME/backups

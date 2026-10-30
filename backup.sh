@@ -12,6 +12,7 @@ readonly EXIT_SRC_INVALID=2
 readonly EXIT_DEST_INVALID=3
 readonly EXIT_ARCHIVE_FAIL=4
 readonly EXIT_VERIFY_FAIL=5
+readonly EXIT_CONFIG_INVALID=6
 
 # ---------- Variabel default ----------
 SRC_DIR=""
@@ -46,15 +47,19 @@ init_log() {
 
 usage() {
     cat << USAGE
-Penggunaan: $0 -s <folder_sumber> -d <folder_tujuan> [-c <file_config>] [-h]
+Penggunaan: $0 [-s <folder_sumber>] [-d <folder_tujuan>] [-c <file_config>] [-h]
 
-  -s  folder yang akan di-backup (wajib)
-  -d  folder tempat arsip disimpan (wajib)
-  -c  file konfigurasi (opsional)
+  -s  folder yang akan di-backup
+  -d  folder tempat arsip disimpan
+  -c  file konfigurasi (isi: SRC_DIR=... dan DEST_DIR=...)
   -h  tampilkan bantuan ini
+
+Sumber dan tujuan wajib ada, dari parameter atau dari file konfigurasi.
+Parameter command line mengalahkan nilai di file konfigurasi.
 
 Contoh:
   $0 -s ./data -d ./backups
+  $0 -c config/backup.conf
 USAGE
 }
 
@@ -70,16 +75,53 @@ parse_args() {
             \?) log ERROR "Opsi tidak dikenal: -$OPTARG"; usage; exit "$EXIT_USAGE" ;;
         esac
     done
-
-    if [[ -z "$SRC_DIR" || -z "$DEST_DIR" ]]; then
-        log ERROR "Parameter -s dan -d wajib diisi"
-        usage
-        exit "$EXIT_USAGE"
-    fi
 }
 
 load_config() {
-    log TODO "load_config belum dibuat"
+    local line key value lineno=0
+
+    if [[ -z "$CONFIG_FILE" ]]; then
+        log INFO "Tidak memakai file konfigurasi"
+        return 0
+    fi
+    if [[ ! -f "$CONFIG_FILE" || ! -r "$CONFIG_FILE" ]]; then
+        log ERROR "File konfigurasi tidak ditemukan atau tidak bisa dibaca: $CONFIG_FILE"
+        exit "$EXIT_CONFIG_INVALID"
+    fi
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        lineno=$((lineno + 1))
+        # lewati baris kosong dan komentar
+        [[ -z "${line//[[:space:]]/}" || "$line" =~ ^[[:space:]]*# ]] && continue
+
+        if [[ ! "$line" =~ ^[[:space:]]*([A-Z_]+)=(.*)$ ]]; then
+            log ERROR "Config baris $lineno tidak valid (format harus KUNCI=nilai)"
+            exit "$EXIT_CONFIG_INVALID"
+        fi
+        key="${BASH_REMATCH[1]}"
+        value="${BASH_REMATCH[2]}"
+        value="${value%\"}"
+        value="${value#\"}"
+
+        case "$key" in
+            SRC_DIR)  [[ -z "$SRC_DIR" ]] && SRC_DIR="$value" ;;
+            DEST_DIR) [[ -z "$DEST_DIR" ]] && DEST_DIR="$value" ;;
+            *)
+                log ERROR "Config baris $lineno: kunci tidak dikenal: $key"
+                exit "$EXIT_CONFIG_INVALID"
+                ;;
+        esac
+    done < "$CONFIG_FILE"
+
+    log INFO "Konfigurasi dimuat dari $CONFIG_FILE"
+}
+
+check_required() {
+    if [[ -z "$SRC_DIR" || -z "$DEST_DIR" ]]; then
+        log ERROR "Folder sumber dan tujuan wajib diisi (lewat -s dan -d, atau file konfigurasi)"
+        usage
+        exit "$EXIT_USAGE"
+    fi
 }
 
 validate_input() {
@@ -170,6 +212,7 @@ main() {
     log INFO "Script dimulai"
     parse_args "$@"
     load_config
+    check_required
     validate_input
     create_backup
     verify_backup
