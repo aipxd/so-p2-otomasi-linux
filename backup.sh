@@ -17,12 +17,28 @@ readonly EXIT_VERIFY_FAIL=5
 SRC_DIR=""
 DEST_DIR=""
 LOG_FILE="./logs/backup.log"
+LOG_READY=0
 CONFIG_FILE=""
 
 # ---------- Fungsi ----------
 log() {
     local level="$1"; shift
-    echo "[$(date '+%F %T')] [$level] $*"
+    local line
+    line="[$(date '+%F %T')] [$level] $*"
+    echo "$line"
+    if [[ "$LOG_READY" -eq 1 ]]; then
+        echo "$line" >> "$LOG_FILE"
+    fi
+}
+
+init_log() {
+    local log_dir
+    log_dir="$(dirname "$LOG_FILE")"
+    if mkdir -p "$log_dir" 2>/dev/null && touch "$LOG_FILE" 2>/dev/null; then
+        LOG_READY=1
+    else
+        echo "[PERINGATAN] File log tidak bisa ditulis: $LOG_FILE (log hanya ke layar)" >&2
+    fi
 }
 
 usage() {
@@ -96,6 +112,8 @@ verify_backup() {
 }
 
 main() {
+    init_log
+    log INFO "Script dimulai"
     parse_args "$@"
     load_config
     validate_input
