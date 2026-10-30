@@ -1,0 +1,6 @@
+logs/
+backups/
+*.tar.gz
+config/backup.conf
+id_ed25519
+*.pem
