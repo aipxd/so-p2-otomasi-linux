@@ -26,11 +26,37 @@ log() {
 }
 
 usage() {
-    log TODO "usage belum dibuat"
+    cat << USAGE
+Penggunaan: $0 -s <folder_sumber> -d <folder_tujuan> [-c <file_config>] [-h]
+
+  -s  folder yang akan di-backup (wajib)
+  -d  folder tempat arsip disimpan (wajib)
+  -c  file konfigurasi (opsional)
+  -h  tampilkan bantuan ini
+
+Contoh:
+  $0 -s ./data -d ./backups
+USAGE
 }
 
 parse_args() {
-    log TODO "parse_args belum dibuat"
+    local opt
+    while getopts ":s:d:c:h" opt; do
+        case "$opt" in
+            s) SRC_DIR="$OPTARG" ;;
+            d) DEST_DIR="$OPTARG" ;;
+            c) CONFIG_FILE="$OPTARG" ;;
+            h) usage; exit "$EXIT_OK" ;;
+            :)  log ERROR "Opsi -$OPTARG membutuhkan nilai"; usage; exit "$EXIT_USAGE" ;;
+            \?) log ERROR "Opsi tidak dikenal: -$OPTARG"; usage; exit "$EXIT_USAGE" ;;
+        esac
+    done
+
+    if [[ -z "$SRC_DIR" || -z "$DEST_DIR" ]]; then
+        log ERROR "Parameter -s dan -d wajib diisi"
+        usage
+        exit "$EXIT_USAGE"
+    fi
 }
 
 load_config() {
@@ -38,7 +64,27 @@ load_config() {
 }
 
 validate_input() {
-    log TODO "validate_input belum dibuat"
+    if [[ ! -e "$SRC_DIR" ]]; then
+        log ERROR "Folder sumber tidak ditemukan: $SRC_DIR"
+        exit "$EXIT_SRC_INVALID"
+    fi
+    if [[ ! -d "$SRC_DIR" ]]; then
+        log ERROR "Sumber bukan sebuah folder: $SRC_DIR"
+        exit "$EXIT_SRC_INVALID"
+    fi
+    if [[ ! -r "$SRC_DIR" ]]; then
+        log ERROR "Folder sumber tidak bisa dibaca: $SRC_DIR"
+        exit "$EXIT_SRC_INVALID"
+    fi
+    if [[ ! -d "$DEST_DIR" ]]; then
+        log ERROR "Folder tujuan tidak ditemukan: $DEST_DIR"
+        exit "$EXIT_DEST_INVALID"
+    fi
+    if [[ ! -w "$DEST_DIR" ]]; then
+        log ERROR "Folder tujuan tidak bisa ditulis: $DEST_DIR"
+        exit "$EXIT_DEST_INVALID"
+    fi
+    log INFO "Validasi input OK (sumber=$SRC_DIR, tujuan=$DEST_DIR)"
 }
 
 create_backup() {
