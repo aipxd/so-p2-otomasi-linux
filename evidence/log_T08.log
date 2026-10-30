@@ -1,0 +1,7 @@
+[2026-10-30 03:17:23] [INFO] Script dimulai
+[2026-10-30 03:17:23] [INFO] Tidak memakai file konfigurasi
+[2026-10-30 03:17:23] [INFO] Validasi input OK (sumber=/tmp/tmp.Fjlw8TYyPU/sumber_rusak, tujuan=/tmp/tmp.Fjlw8TYyPU/hasil_gagal)
+[2026-10-30 03:17:23] [INFO] Membuat arsip: /tmp/tmp.Fjlw8TYyPU/hasil_gagal/sumber_rusak_20261030_031723.tar.gz
+[2026-10-30 03:17:23] [ERROR] Gagal membuat arsip dari /tmp/tmp.Fjlw8TYyPU/sumber_rusak
+[2026-10-30 03:17:23] [ERROR] Pesan tar: tar: sumber_rusak/x.txt: Cannot open: Permission denied
+tar: Exiting with failure status due to previous errors
