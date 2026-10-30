@@ -165,3 +165,45 @@ pernah menghapus atau mengubah folder sumber.
 - Path di konfigurasi harus absolut (tanda `~` tidak diperluas).
 - Lokasi log tetap `./logs/backup.log`, sehingga script perlu dijalankan dari folder
   repository.
+
+## 13. Catatan kontribusi anggota (Kelompok 3)
+
+### Seksi pekerjaan
+
+| Seksi | Pekerjaan |
+|---|---|
+| 1 | Perancangan use case, parameter, dan exit code |
+| 2 | Setup repository, struktur folder, `.gitignore`, Git dan SSH |
+| 3 | Modul parameter dan validasi (`usage`, `parse_args`, `validate_input`) |
+| 4 | Modul logging (`log`, `init_log`) |
+| 5 | Modul inti backup (`create_backup`, `verify_backup`) |
+| 6 | Modul konfigurasi (`load_config`, `config/backup.conf.example`) |
+| 7 | Pengujian (`tests/run_tests.sh`, `evidence/`) |
+| 8 | Dokumentasi (README) |
+| 9 | Review keamanan dan kualitas script |
+| 10 | Verifikasi reproduksi di mesin lain |
+| 11 | Catatan kontribusi |
+| 12 | Rilis (tag Git) dan submission |
+
+### Penanggung jawab
+
+| No | Anggota | Seksi | Kontribusi |
+|---|---|---|---|
+| 1 | Aqshal Seta Pameling | 4 | Penanggung jawab modul logging; menyediakan tempat (kos) untuk pengerjaan bersama |
+| 2 | Adibta Ilham Winanta | 1, 2, 3 | Menyediakan laptop dan VM untuk penulisan dan pengujian; menjalankan setup repository |
+| 3 | Bayu Faqih Alqurni | 7 | Penanggung jawab pengujian |
+| 4 | Belmirel Ilavi R.U | 5, 12 | Penanggung jawab modul inti backup, rilis, dan submission |
+| 5 | Jahran Pahlevi Tambrin | 8, 9 | Penanggung jawab dokumentasi dan review keamanan |
+| 6 | Muhammad Rakha B. Ardan | 10, 11 | Penanggung jawab verifikasi reproduksi dan catatan kontribusi |
+| 7 | Zaidaan Satrya H | 6 | Penanggung jawab modul konfigurasi |
+
+### Status
+
+- Seksi 1 sampai 8: selesai dan sudah ada di repository.
+- Seksi 9 sampai 12: dalam pengerjaan saat catatan ini ditulis.
+
+### Catatan
+
+- Pengerjaan dilakukan bersama-sama di tempat yang disediakan Aqshal (kos), dengan
+  laptop dan VM milik Adibta. Karena itu hanya satu akun GitHub (`aipxd`) yang dipakai
+  dan seluruh commit hingga saat ini berasal dari akun tersebut.
