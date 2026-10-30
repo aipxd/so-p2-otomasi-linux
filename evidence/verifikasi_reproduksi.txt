@@ -1,0 +1,35 @@
+Verifikasi reproduksi seksi 10 - 2026-10-30 04:03:02
+Lingkungan: Ubuntu 26.04.1 LTS, bash 5.3.9(1)-release
+Catatan 1: dilakukan di VM yang sama dengan pengembangan, pada clone baru di ~/uji_reproduksi
+Catatan 2: percobaan pertama menunjukkan skenario [2] gagal (exit 4, arsip sudah ada) karena dua backup berjalan dalam detik yang sama sehingga nama arsip bentrok; script menolak menimpa sesuai desain. Percobaan diulang dengan jeda 1 detik di bawah.
+Commit yang diuji: 84d3824
+
+[1] Backup dengan parameter (README bagian 4)
+[2026-10-30 04:03:02] [INFO] Script dimulai
+[2026-10-30 04:03:02] [INFO] Tidak memakai file konfigurasi
+[2026-10-30 04:03:02] [INFO] Validasi input OK (sumber=/home/adibta/data, tujuan=/home/adibta/backups)
+[2026-10-30 04:03:02] [INFO] Membuat arsip: /home/adibta/backups/data_20261030_040302.tar.gz
+[2026-10-30 04:03:02] [INFO] Arsip berhasil dibuat
+[2026-10-30 04:03:02] [INFO] Verifikasi OK: /home/adibta/backups/data_20261030_040302.tar.gz (167 byte)
+[2026-10-30 04:03:02] [INFO] Proses selesai
+exit code: 0
+total 4
+-rw-rw-r-- 1 adibta adibta 167 Oct 30 04:03 data_20261030_040302.tar.gz
+
+[2] Backup dengan file konfigurasi (README bagian 4)
+[2026-10-30 04:03:03] [INFO] Script dimulai
+[2026-10-30 04:03:03] [INFO] Konfigurasi dimuat dari config/backup.conf
+[2026-10-30 04:03:03] [INFO] Validasi input OK (sumber=/home/adibta/data, tujuan=/home/adibta/backups)
+[2026-10-30 04:03:03] [INFO] Membuat arsip: /home/adibta/backups/data_20261030_040303.tar.gz
+[2026-10-30 04:03:03] [INFO] Arsip berhasil dibuat
+[2026-10-30 04:03:03] [INFO] Verifikasi OK: /home/adibta/backups/data_20261030_040303.tar.gz (167 byte)
+[2026-10-30 04:03:03] [INFO] Proses selesai
+exit code: 0
+total 8
+-rw-rw-r-- 1 adibta adibta 167 Oct 30 04:03 data_20261030_040302.tar.gz
+-rw-rw-r-- 1 adibta adibta 167 Oct 30 04:03 data_20261030_040303.tar.gz
+
+[3] Menjalankan seluruh pengujian (README bagian 6)
+    [PASS] tidak ada arsip atau file .part yang tersisa
+
+RINGKASAN: 11 cek lulus, 0 cek gagal

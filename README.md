@@ -165,6 +165,7 @@ pernah menghapus atau mengubah folder sumber.
 - Path di konfigurasi harus absolut (tanda `~` tidak diperluas).
 - Lokasi log tetap `./logs/backup.log`, sehingga script perlu dijalankan dari folder
   repository.
+- Nama arsip berstempel waktu per detik, sehingga dua backup dari folder bernama sama dalam detik yang sama ditolak (exit 4) dan harus diulang setelah jeda sebentar.
 
 ## 13. Catatan kontribusi anggota (Kelompok 3)
 
@@ -199,8 +200,8 @@ pernah menghapus atau mengubah folder sumber.
 
 ### Status
 
-- Seksi 1 sampai 8: selesai dan sudah ada di repository.
-- Seksi 9 sampai 12: dalam pengerjaan saat catatan ini ditulis.
+- Seksi 1 sampai 11: selesai dan sudah ada di repository (bukti seksi 9 dan 10 ada di `evidence/`).
+- Seksi 12: pemasangan tag dan submission dilakukan setelah catatan ini di-commit.
 
 ### Catatan
 
