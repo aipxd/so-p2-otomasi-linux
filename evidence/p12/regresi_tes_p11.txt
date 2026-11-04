@@ -1,0 +1,56 @@
+HASIL PENGUJIAN backup.sh
+Tanggal : 2026-11-04 01:43:40
+Sistem  : Linux 7.0.0-30-generic, bash 5.3.9(1)-release
+
+[T01] SUKSES: backup folder yang valid
+    perintah       : ./backup.sh -s /tmp/tmp.CxOW0r6D3D/sumber -d /tmp/tmp.CxOW0r6D3D/hasil_ok
+    exit diharapkan: 0
+    exit aktual    : 0
+    [PASS] exit code sesuai
+    [PASS] arsip .tar.gz terbentuk
+    [PASS] arsip berisi sumber/a.txt
+
+[T02] GAGAL: tanpa parameter
+    perintah       : ./backup.sh 
+    exit diharapkan: 1
+    exit aktual    : 1
+    [PASS] exit code sesuai
+
+[T03] GAGAL: folder sumber tidak ada
+    perintah       : ./backup.sh -s /tmp/tmp.CxOW0r6D3D/tidak_ada -d /tmp/tmp.CxOW0r6D3D/hasil_ok
+    exit diharapkan: 2
+    exit aktual    : 2
+    [PASS] exit code sesuai
+
+[T04] GAGAL: folder tujuan tidak ada
+    perintah       : ./backup.sh -s /tmp/tmp.CxOW0r6D3D/sumber -d /tmp/tmp.CxOW0r6D3D/tidak_ada
+    exit diharapkan: 3
+    exit aktual    : 3
+    [PASS] exit code sesuai
+
+[T05] GAGAL: folder tujuan di dalam folder sumber
+    perintah       : ./backup.sh -s /tmp/tmp.CxOW0r6D3D/sumber2 -d /tmp/tmp.CxOW0r6D3D/sumber2/dalam
+    exit diharapkan: 3
+    exit aktual    : 3
+    [PASS] exit code sesuai
+
+[T06] GAGAL: file konfigurasi tidak ada
+    perintah       : ./backup.sh -c /tmp/tmp.CxOW0r6D3D/tidak_ada.conf
+    exit diharapkan: 6
+    exit aktual    : 6
+    [PASS] exit code sesuai
+
+[T07] GAGAL: isi konfigurasi tidak valid
+    perintah       : ./backup.sh -c /tmp/tmp.CxOW0r6D3D/salah.conf
+    exit diharapkan: 6
+    exit aktual    : 6
+    [PASS] exit code sesuai
+
+[T08] GAGAL: ada file yang tidak bisa dibaca
+    perintah       : ./backup.sh -s /tmp/tmp.CxOW0r6D3D/sumber_rusak -d /tmp/tmp.CxOW0r6D3D/hasil_gagal
+    exit diharapkan: 4
+    exit aktual    : 4
+    [PASS] exit code sesuai
+    [PASS] tidak ada arsip atau file .part yang tersisa
+
+RINGKASAN: 11 cek lulus, 0 cek gagal

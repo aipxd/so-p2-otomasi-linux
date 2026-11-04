@@ -4,3 +4,11 @@
 # Parameter -s dan -d di command line selalu menang atas nilai di sini.
 SRC_DIR=/home/USERNAME/data
 DEST_DIR=/home/USERNAME/backups
+
+# Pengaturan kirim jarak jauh (dipakai jika backup.sh dijalankan dengan opsi -r)
+# Gunakan path absolut untuk SSH_KEY. File kunci harus berizin 600.
+REMOTE_HOST=localhost
+REMOTE_USER=backupuser
+REMOTE_DIR=/incoming
+REMOTE_PORT=22
+SSH_KEY=/home/USERNAME/.ssh/backup_key
