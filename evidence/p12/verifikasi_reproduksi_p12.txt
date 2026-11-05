@@ -1,0 +1,30 @@
+Verifikasi reproduksi P12 - 2026-11-05 12:10:45: command not found
+Lingkungan: Ubuntu 26.04.1 LTS, bash 5.3.9(1)-release
+Catatan: dilakukan di VM yang sama dengan pengembangan, pada clone baru di ~/uji_reproduksi
+Commit yang diuji: 1783ff6
+
+[1] Sintaks dan shellcheck
+sintaks OK
+exit code shellcheck: 0
+
+[2] Backup dengan kirim jarak jauh (README bagian 14.5)
+[2026-11-05 12:10:45] [INFO] Script dimulai
+[2026-11-05 12:10:45] [INFO] Konfigurasi dimuat dari config/backup.conf
+[2026-11-05 12:10:45] [INFO] Validasi input OK (sumber=/home/adibta/data, tujuan=/home/adibta/backups)
+[2026-11-05 12:10:45] [INFO] Pengaturan jarak jauh OK (backupuser@localhost:/incoming, port 22)
+[2026-11-05 12:10:45] [INFO] Membuat arsip: /home/adibta/backups/data_20261105_121045.tar.gz
+[2026-11-05 12:10:45] [INFO] Arsip berhasil dibuat
+[2026-11-05 12:10:45] [INFO] Verifikasi OK: /home/adibta/backups/data_20261105_121045.tar.gz (172 byte)
+[2026-11-05 12:10:45] [INFO] Mengirim arsip ke backupuser@localhost:/incoming/data_20261105_121045.tar.gz (port 22)
+[2026-11-05 12:10:46] [INFO] Arsip terkirim: /incoming/data_20261105_121045.tar.gz
+[2026-11-05 12:10:47] [INFO] Verifikasi jarak jauh OK (SHA-256: 994ffd9e9379ffdd847216cb0df705b66dc42f6ec59d5fe9018d6f01b52eb126)
+[2026-11-05 12:10:47] [INFO] Proses selesai
+exit code: 0
+sftp> ls -l /incoming
+-rw-------    ? 1003     1003          172 Nov  5 12:10 /incoming/data_20261105_121045.tar.gz
+
+[3] Tes P11 (regresi)
+
+RINGKASAN: 11 cek lulus, 0 cek gagal
+
+[4] Tes P12

@@ -376,3 +376,24 @@ Private key dan isi `~/.ssh` tidak pernah ditampilkan, diunggah, atau disimpan d
 - Path sumber, tujuan, dan `REMOTE_DIR` tidak boleh mengandung spasi.
 - Akun biasa di VM masih mengizinkan login password (pengaturan global sengaja tidak diubah).
 - Belum ada penjadwalan otomatis dan rotasi arsip lama.
+
+## 15. Catatan kontribusi P12 (Kelompok 3)
+
+Pekerjaan P12 dikerjakan bersama-sama oleh anggota Kelompok 3 di tempat yang disediakan
+Aqshal (kos), dengan laptop dan VM milik Adibta. Karena itu hanya satu akun GitHub
+(`aipxd`) yang dipakai, dan seluruh commit P12 berasal dari akun tersebut. Pembagian
+peran per seksi pada bagian 13 tetap menjadi acuan peran, bukan penanda akun pembuat commit.
+
+Bagian pekerjaan P12:
+
+| Bagian | Isi |
+|---|---|
+| Rancangan alur | Alur backup lokal ke kirim SFTP dengan kunci SSH, kontrol akses berlapis |
+| Penyiapan server | User `backupuser`, kunci khusus backup, pengaturan sshd (chroot, hanya sftp) |
+| Kode | Opsi `-r`, validasi pengaturan jarak jauh, kirim dan verifikasi SHA-256, exit code 7 sampai 9 |
+| Pengujian | `tests/run_tests_p12.sh` (positif, negatif, pemeriksaan akses) dan regresi P11 |
+| Analisis | Permission dan risiko (`docs/ANALISIS_P12.md`) |
+| Cleanup dan rollback | Prosedur dan eksekusi (`docs/CLEANUP_ROLLBACK_P12.md`) |
+| Dokumentasi | README bagian 14 dan 15, `CHANGELOG.md`, dokumen pengumpulan |
+
+Status pada bagian 13 berlaku untuk checkpoint P11.
