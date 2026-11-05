@@ -1,0 +1,153 @@
+HASIL PENGUJIAN P12 (kirim arsip lewat SFTP dengan kunci SSH)
+Tanggal : 2026-11-05 01:31:38
+Sistem  : Linux 7.0.0-38-generic, bash 5.3.9(1)-release
+Klien   : OpenSSH_10.2p1 Ubuntu-2ubuntu3.8, OpenSSL 3.5.5 27 Jan 2026
+Commit  : bcb6cb3
+Server  : backupuser@localhost port 22, folder /incoming (file kunci: hanya path, isinya tidak ditampilkan)
+
+===== SKENARIO POSITIF (akses diizinkan) =====
+
+Isi konfigurasi P01 (hanya alamat dan path, tanpa credential):
+        SRC_DIR=/tmp/tmp.nflD3hPpvw/data
+        DEST_DIR=/tmp/tmp.nflD3hPpvw/hasil_P01
+        REMOTE_HOST=localhost
+        REMOTE_USER=backupuser
+        REMOTE_DIR=/incoming
+        REMOTE_PORT=22
+        SSH_KEY=/home/adibta/.ssh/backup_key
+
+[P01] POSITIF: backup dan kirim ke server dengan kunci yang benar
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/P01.conf -r
+    exit diharapkan: 0
+    exit aktual    : 0
+    [PASS] exit code sesuai
+    [PASS] arsip lokal terbentuk
+    [PASS] log memuat verifikasi jarak jauh (SHA-256) OK
+    isi folder server setelah P01:
+        sftp> ls -l /incoming
+        -rw-------    ? 1003     1003          157 Nov  4 01:42 /incoming/data_20261104_014212.tar.gz
+        -rw-------    ? 1003     1003          160 Nov  5 01:31 /incoming/data_20261105_013138.tar.gz
+        -rw-rw-r--    ? 1003     1003           19 Nov  4 01:21 /incoming/uji_kirim.txt
+        -rw-------    ? 1003     1003           20 Nov  4 01:33 /incoming/uji_kirim2.txt
+    [PASS] arsip ada di server dengan izin 600
+
+[P02] POSITIF: tanpa opsi -r hanya backup lokal (perilaku P11)
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/P02.conf
+    exit diharapkan: 0
+    exit aktual    : 0
+    [PASS] exit code sesuai
+    [PASS] log tidak memuat pengiriman jarak jauh
+
+===== SKENARIO NEGATIF (akses ditolak atau konfigurasi tidak valid) =====
+
+[N01] NEGATIF: kunci SSH yang salah (tidak terdaftar di server)
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N01.conf -r
+    exit diharapkan: 8
+    exit aktual    : 8
+    [PASS] exit code sesuai
+
+[N02] NEGATIF: user tidak ada di server
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N02.conf -r
+    exit diharapkan: 8
+    exit aktual    : 8
+    [PASS] exit code sesuai
+
+[N03] NEGATIF: kunci benar dipakai untuk user lain
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N03.conf -r
+    exit diharapkan: 8
+    exit aktual    : 8
+    [PASS] exit code sesuai
+
+[N04] NEGATIF: izin file kunci 644 (terlalu terbuka)
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N04.conf -r
+    exit diharapkan: 7
+    exit aktual    : 7
+    [PASS] exit code sesuai
+
+[N05] NEGATIF: file kunci tidak ada
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N05.conf -r
+    exit diharapkan: 7
+    exit aktual    : 7
+    [PASS] exit code sesuai
+
+[N06] NEGATIF: host tidak terjangkau
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N06.conf -r
+    exit diharapkan: 8
+    exit aktual    : 8
+    [PASS] exit code sesuai
+
+[N07] NEGATIF: port salah (tertutup)
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N07.conf -r
+    exit diharapkan: 8
+    exit aktual    : 8
+    [PASS] exit code sesuai
+
+[N08] NEGATIF: folder tujuan di server tidak ada
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N08.conf -r
+    exit diharapkan: 8
+    exit aktual    : 8
+    [PASS] exit code sesuai
+
+[N09] NEGATIF: menulis di akar server (di luar folder incoming)
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N09.conf -r
+    exit diharapkan: 8
+    exit aktual    : 8
+    [PASS] exit code sesuai
+
+[N10] NEGATIF: REMOTE_DIR memuat '..'
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N10.conf -r
+    exit diharapkan: 7
+    exit aktual    : 7
+    [PASS] exit code sesuai
+
+[N11] NEGATIF: REMOTE_DIR bukan path absolut
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N11.conf -r
+    exit diharapkan: 7
+    exit aktual    : 7
+    [PASS] exit code sesuai
+
+[N12] NEGATIF: REMOTE_DIR memuat karakter berbahaya
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N12.conf -r
+    exit diharapkan: 7
+    exit aktual    : 7
+    [PASS] exit code sesuai
+
+[N13] NEGATIF: opsi -r tetapi konfigurasi jarak jauh tidak lengkap
+    perintah       : ./backup.sh -c /tmp/tmp.nflD3hPpvw/N13.conf -r
+    exit diharapkan: 7
+    exit aktual    : 7
+    [PASS] exit code sesuai
+
+===== PEMERIKSAAN LANGSUNG (kontrol akses di sisi server) =====
+
+[D01] login dengan password ditolak (hanya kunci yang diterima)
+    exit aktual    : 255
+    keluaran       : backupuser@localhost: Permission denied (publickey).
+    [PASS] perintah ditolak (exit bukan 0)
+    [PASS] keluaran memuat pesan penolakan yang diharapkan
+
+[D02] kunci benar tetapi menjalankan perintah shell ditolak (hanya sftp)
+    exit aktual    : 1
+    keluaran       : This service allows sftp connections only.
+    [PASS] perintah ditolak (exit bukan 0)
+    [PASS] keluaran memuat pesan penolakan yang diharapkan
+
+[D03] membaca file di luar folder backup ditolak (dikurung di folder rumahnya)
+    exit aktual    : 1
+    keluaran       : sftp> get /etc/passwd /tmp/tmp.nflD3hPpvw/passwd_uji File "/etc/passwd" not found.
+    [PASS] perintah ditolak (exit bukan 0)
+    [PASS] keluaran memuat pesan penolakan yang diharapkan
+
+[D04] user biasa tidak bisa membuka folder milik backupuser
+    exit aktual    : 2
+    keluaran       : ls: cannot open directory '/home/backupuser': Permission denied
+    [PASS] folder backup tidak bisa dibuka oleh user biasa
+
+[KEAMANAN] pemeriksaan isi bukti
+    [PASS] tidak ada penanda private key di folder bukti
+    [PASS] isi file kunci tidak muncul di folder bukti
+
+[CLEANUP] menghapus arsip uji yang dikirim tes ini dari server
+    dihapus: /incoming/data_20261105_013138.tar.gz
+
+RINGKASAN: 28 cek lulus, 0 cek gagal

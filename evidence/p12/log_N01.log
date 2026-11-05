@@ -1,0 +1,10 @@
+[2026-11-05 01:31:40] [INFO] Script dimulai
+[2026-11-05 01:31:40] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N01.conf
+[2026-11-05 01:31:40] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N01)
+[2026-11-05 01:31:40] [INFO] Pengaturan jarak jauh OK (backupuser@localhost:/incoming, port 22)
+[2026-11-05 01:31:40] [INFO] Membuat arsip: /tmp/tmp.nflD3hPpvw/hasil_N01/data_20261105_013140.tar.gz
+[2026-11-05 01:31:40] [INFO] Arsip berhasil dibuat
+[2026-11-05 01:31:40] [INFO] Verifikasi OK: /tmp/tmp.nflD3hPpvw/hasil_N01/data_20261105_013140.tar.gz (160 byte)
+[2026-11-05 01:31:40] [INFO] Mengirim arsip ke backupuser@localhost:/incoming/data_20261105_013140.tar.gz (port 22)
+[2026-11-05 01:31:40] [ERROR] Pengiriman ke server gagal
+[2026-11-05 01:31:40] [ERROR] Pesan sftp: backupuser@localhost: Permission denied (publickey).  Connection closed 

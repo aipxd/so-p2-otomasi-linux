@@ -1,0 +1,4 @@
+[2026-11-05 01:32:04] [INFO] Script dimulai
+[2026-11-05 01:32:04] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N11.conf
+[2026-11-05 01:32:04] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N11)
+[2026-11-05 01:32:04] [ERROR] REMOTE_DIR harus path absolut tanpa spasi atau '..' (contoh: /incoming)

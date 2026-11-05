@@ -1,0 +1,7 @@
+[2026-11-05 01:31:40] [INFO] Script dimulai
+[2026-11-05 01:31:40] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/P02.conf
+[2026-11-05 01:31:40] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_P02)
+[2026-11-05 01:31:40] [INFO] Membuat arsip: /tmp/tmp.nflD3hPpvw/hasil_P02/data_20261105_013140.tar.gz
+[2026-11-05 01:31:40] [INFO] Arsip berhasil dibuat
+[2026-11-05 01:31:40] [INFO] Verifikasi OK: /tmp/tmp.nflD3hPpvw/hasil_P02/data_20261105_013140.tar.gz (160 byte)
+[2026-11-05 01:31:40] [INFO] Proses selesai

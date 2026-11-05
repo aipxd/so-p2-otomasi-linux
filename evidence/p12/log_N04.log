@@ -1,0 +1,4 @@
+[2026-11-05 01:31:41] [INFO] Script dimulai
+[2026-11-05 01:31:41] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N04.conf
+[2026-11-05 01:31:41] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N04)
+[2026-11-05 01:31:41] [ERROR] Izin file kunci terlalu terbuka (644). Perbaiki dengan: chmod 600 /tmp/tmp.nflD3hPpvw/kunci_longgar

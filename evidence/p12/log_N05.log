@@ -1,0 +1,4 @@
+[2026-11-05 01:31:41] [INFO] Script dimulai
+[2026-11-05 01:31:41] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N05.conf
+[2026-11-05 01:31:41] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N05)
+[2026-11-05 01:31:41] [ERROR] File kunci SSH tidak ditemukan atau tidak bisa dibaca: /tmp/tmp.nflD3hPpvw/tidak_ada_kunci (gunakan path absolut)

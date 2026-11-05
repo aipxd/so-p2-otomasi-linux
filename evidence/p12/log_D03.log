@@ -1,0 +1,2 @@
+sftp> get /etc/passwd /tmp/tmp.nflD3hPpvw/passwd_uji
+File "/etc/passwd" not found.

@@ -1,0 +1,10 @@
+[2026-11-05 01:32:02] [INFO] Script dimulai
+[2026-11-05 01:32:02] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N08.conf
+[2026-11-05 01:32:02] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N08)
+[2026-11-05 01:32:02] [INFO] Pengaturan jarak jauh OK (backupuser@localhost:/tidak_ada, port 22)
+[2026-11-05 01:32:02] [INFO] Membuat arsip: /tmp/tmp.nflD3hPpvw/hasil_N08/data_20261105_013202.tar.gz
+[2026-11-05 01:32:02] [INFO] Arsip berhasil dibuat
+[2026-11-05 01:32:02] [INFO] Verifikasi OK: /tmp/tmp.nflD3hPpvw/hasil_N08/data_20261105_013202.tar.gz (160 byte)
+[2026-11-05 01:32:02] [INFO] Mengirim arsip ke backupuser@localhost:/tidak_ada/data_20261105_013202.tar.gz (port 22)
+[2026-11-05 01:32:03] [ERROR] Pengiriman ke server gagal
+[2026-11-05 01:32:03] [ERROR] Pesan sftp: sftp> put /tmp/tmp.nflD3hPpvw/hasil_N08/data_20261105_013202.tar.gz /tidak_ada/data_20261105_013202.tar.gz.part dest open "/tidak_ada/data_20261105_013202.tar.gz.part": No such file or directory 

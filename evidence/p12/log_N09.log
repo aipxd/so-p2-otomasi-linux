@@ -1,0 +1,10 @@
+[2026-11-05 01:32:03] [INFO] Script dimulai
+[2026-11-05 01:32:03] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N09.conf
+[2026-11-05 01:32:03] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N09)
+[2026-11-05 01:32:03] [INFO] Pengaturan jarak jauh OK (backupuser@localhost:/, port 22)
+[2026-11-05 01:32:03] [INFO] Membuat arsip: /tmp/tmp.nflD3hPpvw/hasil_N09/data_20261105_013203.tar.gz
+[2026-11-05 01:32:03] [INFO] Arsip berhasil dibuat
+[2026-11-05 01:32:03] [INFO] Verifikasi OK: /tmp/tmp.nflD3hPpvw/hasil_N09/data_20261105_013203.tar.gz (160 byte)
+[2026-11-05 01:32:03] [INFO] Mengirim arsip ke backupuser@localhost:/data_20261105_013203.tar.gz (port 22)
+[2026-11-05 01:32:04] [ERROR] Pengiriman ke server gagal
+[2026-11-05 01:32:04] [ERROR] Pesan sftp: sftp> put /tmp/tmp.nflD3hPpvw/hasil_N09/data_20261105_013203.tar.gz /data_20261105_013203.tar.gz.part dest open "/data_20261105_013203.tar.gz.part": Permission denied 

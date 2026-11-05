@@ -1,0 +1,10 @@
+[2026-11-05 01:31:41] [INFO] Script dimulai
+[2026-11-05 01:31:41] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N03.conf
+[2026-11-05 01:31:41] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N03)
+[2026-11-05 01:31:41] [INFO] Pengaturan jarak jauh OK (adibta@localhost:/incoming, port 22)
+[2026-11-05 01:31:41] [INFO] Membuat arsip: /tmp/tmp.nflD3hPpvw/hasil_N03/data_20261105_013141.tar.gz
+[2026-11-05 01:31:41] [INFO] Arsip berhasil dibuat
+[2026-11-05 01:31:41] [INFO] Verifikasi OK: /tmp/tmp.nflD3hPpvw/hasil_N03/data_20261105_013141.tar.gz (160 byte)
+[2026-11-05 01:31:41] [INFO] Mengirim arsip ke adibta@localhost:/incoming/data_20261105_013141.tar.gz (port 22)
+[2026-11-05 01:31:41] [ERROR] Pengiriman ke server gagal
+[2026-11-05 01:31:41] [ERROR] Pesan sftp: adibta@localhost: Permission denied (publickey,password).  Connection closed 

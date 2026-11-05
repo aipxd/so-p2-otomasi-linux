@@ -1,0 +1,4 @@
+[2026-11-05 01:32:04] [INFO] Script dimulai
+[2026-11-05 01:32:04] [INFO] Konfigurasi dimuat dari /tmp/tmp.nflD3hPpvw/N13.conf
+[2026-11-05 01:32:04] [INFO] Validasi input OK (sumber=/tmp/tmp.nflD3hPpvw/data, tujuan=/tmp/tmp.nflD3hPpvw/hasil_N13)
+[2026-11-05 01:32:04] [ERROR] Opsi -r membutuhkan REMOTE_HOST, REMOTE_USER, REMOTE_DIR, dan SSH_KEY di file konfigurasi
