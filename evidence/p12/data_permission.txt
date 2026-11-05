@@ -1,0 +1,59 @@
+Pengumpulan data permission - 2026-11-05 01:35:26
+
+[1] Izin folder .ssh dan file kunci milik adibta (hanya izin, tanpa isi):
+drwx------ 2 adibta adibta 4096 Nov  4 01:06 /home/adibta/.ssh
+-rw------- 1 adibta adibta 411 Nov  4 01:06 /home/adibta/.ssh/backup_key
+-rw-r--r-- 1 adibta adibta  98 Nov  4 01:06 /home/adibta/.ssh/backup_key.pub
+
+[2] Izin folder di sisi server:
+drwxr-x--- 4 root       backupuser 4096 Nov  4 01:08 /home/backupuser
+drwx------ 2 backupuser backupuser 4096 Nov  4 01:09 /home/backupuser/.ssh
+drwx------ 2 backupuser backupuser 4096 Nov  5 01:32 /home/backupuser/incoming
+total 4
+-rw------- 1 backupuser backupuser 128 Nov  4 01:09 authorized_keys
+
+[3] Pembatas pada authorized_keys (tanpa isi kunci):
+restrict,from="127.0.0.1,::1"
+
+[4] Pengaturan SSH efektif untuk backupuser:
+pubkeyauthentication yes
+passwordauthentication no
+kbdinteractiveauthentication no
+x11forwarding no
+permittty no
+allowtcpforwarding no
+allowagentforwarding no
+forcecommand internal-sftp -u 077
+chrootdirectory /home/backupuser
+
+[5] Pengaturan SSH efektif untuk akun biasa (adibta):
+permitrootlogin prohibit-password
+pubkeyauthentication yes
+passwordauthentication yes
+permittty yes
+chrootdirectory none
+
+[6] Akun backupuser:
+backupuser:x:1003:1003::/home/backupuser:/usr/sbin/nologin
+backupuser L 2026-11-04 0 99999 7 -1
+uid=1003(backupuser) gid=1003(backupuser) groups=1003(backupuser),100(users)
+
+[7] Izin file konfigurasi proyek:
+total 8
+-rw------- 1 adibta adibta 188 Nov  4 01:41 backup.conf
+-rw-rw-r-- 1 adibta adibta 591 Nov  4 01:40 backup.conf.example
+
+[8] Isi file pengaturan sshd khusus backupuser:
+# Pembatasan khusus untuk user backupuser (Proyek 2, P12)
+Match User backupuser
+    ChrootDirectory /home/backupuser
+    ForceCommand internal-sftp -u 077
+    PasswordAuthentication no
+    KbdInteractiveAuthentication no
+    AllowTcpForwarding no
+    X11Forwarding no
+    AllowAgentForwarding no
+    PermitTTY no
+
+[9] Fingerprint kunci backup (dari public key, bukan rahasia):
+256 SHA256:k9ZptC9H8/TdBSAUqMqN0LlCWBEtgIrzzYO0HAq6OE4 backup-kelompok3 (ED25519)
