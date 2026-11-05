@@ -1,0 +1,26 @@
+Review keamanan P12 - 2026-11-05 12:28:06
+Commit: a96ea06
+
+[1] File yang dilacak Git (di luar folder evidence):
+.gitignore
+CHANGELOG.md
+README.md
+backup.sh
+config/backup.conf.example
+docs/ANALISIS_P12.md
+docs/CLEANUP_ROLLBACK_P12.md
+tests/run_tests.sh
+tests/run_tests_p12.sh
+
+[2] Nama file sensitif yang dilacak (kunci, pem, config asli, arsip, log):
+tidak ada
+
+[3] Penanda private key pada berkas yang dilacak:
+tidak ditemukan
+
+[4] Isi file kunci backup (dibandingkan tanpa ditampilkan):
+tidak ditemukan pada berkas yang dilacak
+tidak ditemukan pada riwayat commit
+
+[5] shellcheck
+exit code: 0
