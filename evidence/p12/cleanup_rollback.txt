@@ -1,0 +1,46 @@
+CLEANUP P12 - 2026-11-05 01:39:24
+
+[1] Isi folder server sebelum cleanup:
+sftp> ls -l /incoming
+-rw-------    ? 1003     1003          157 Nov  4 01:42 /incoming/data_20261104_014212.tar.gz
+-rw-rw-r--    ? 1003     1003           19 Nov  4 01:21 /incoming/uji_kirim.txt
+-rw-------    ? 1003     1003           20 Nov  4 01:33 /incoming/uji_kirim2.txt
+
+[2] Hapus berkas uji di server:
+sftp> rm /incoming/uji_kirim.txt
+sftp> rm /incoming/uji_kirim2.txt
+sftp> rm /incoming/data_20261104_014212.tar.gz
+
+[3] Isi folder server sesudah cleanup:
+sftp> ls -l /incoming
+
+[4] Hapus folder uji lokal, config uji, dan log lokal:
+ls: cannot access '/home/adibta/uji_p12': No such file or directory
+backup.conf.example
+
+ROLLBACK P12 - 2026-11-05 01:40:34
+
+[R1] Rollback akses: kunci dicabut dari server (authorized_keys dipindah)
+exit code saat kunci dicabut (diharapkan 8): 8
+
+[R1b] Akses dipulihkan (authorized_keys dikembalikan)
+total 4
+-rw------- 1 backupuser backupuser 128 Nov  4 01:09 authorized_keys
+exit code setelah dipulihkan (diharapkan 0): 0
+sftp> ls -l /incoming
+-rw-------    ? 1003     1003          166 Nov  5 01:40 /incoming/data_20261105_014037.tar.gz
+sftp> rm /incoming/data_20261105_014037.tar.gz
+arsip lokal yang tetap ada walau kirim sempat gagal: 2
+
+[R2] Rollback kode ke versi P11 (tag P2-CHECKPOINT-P11-v01), repo tidak diubah
+versi P11 tanpa -r, exit code (diharapkan 0): 0
+[2026-11-05 01:40:41] [ERROR] Opsi tidak dikenal: -r
+versi P11 dengan -r, exit code (diharapkan 1): 1
+
+[R2b] Repo utama tidak berubah:
+?? evidence/p12/cleanup_rollback.txt
+(selesai)
+[2026-11-05 01:40:41] [INFO] Script dimulai
+
+[R3] Isi folder server di akhir:
+sftp> ls -l /incoming
